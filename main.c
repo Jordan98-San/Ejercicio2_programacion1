@@ -1,13 +1,25 @@
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+int max(int a, int b) {
+  int notaMaxima = a;
+  if (b > notaMaxima) {
+    return b;
+  } else {
+    return notaMaxima;
+  }
+}
+
+int maximo_tres(int a, int b, int c) { return max(max(a, b), max(b, c)); }
 
 int main() {
   srand(time(NULL));
 
   int i, j;
   int suma = 0;
-  int max = 0;
+  int maximaNota = 0;
   int min = 0;
 
   int matrizA[5][3] = {0};
@@ -38,17 +50,7 @@ int main() {
       res[i][j] = matrizA[i][j];
       suma += matrizA[i][j];
 
-      if (matrizA[0][0] > matrizA[0][1]) {
-        max = matrizA[0][0];
-      } else {
-        max = matrizA[0][1];
-      }
-
-      if (matrizA[0][1] > matrizA[0][2]) {
-        max = matrizA[0][1];
-      } else {
-        max = matrizA[0][2];
-      }
+      maximaNota = maximo_tres(matrizA[0][0], matrizA[0][1], matrizA[0][2]);
 
       if (matrizA[0][0] < matrizA[0][1]) {
         min = matrizA[0][0];
@@ -66,7 +68,7 @@ int main() {
   printf("---------Estudiantes----------\n");
   printf("\nEstudiante A  -> %d\t%d\t%d", res[0][0], res[0][1], res[0][2]);
   printf("\n Promedio -> %.2f", (float)suma / 3);
-  printf("\nNota mas alta -> %d\n", max);
+  printf("\nNota mas alta -> %d\n", maximaNota);
   printf("\nNota mas baja -> %d", min);
 
   printf("\n---------Materias---------\n");
