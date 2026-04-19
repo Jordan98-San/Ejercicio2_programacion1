@@ -2,27 +2,11 @@
 #include <stdlib.h>
 #include <time.h>
 
-int max(int a, int b) {
-  int notaMaxima = a;
-  if (b > notaMaxima) {
-    return b;
-  } else {
-    return notaMaxima;
-  }
-}
+int max(int a, int b);
+int min(int a, int b);
 
-int maxima_Nota(int a, int b, int c) { return max(max(a, b), max(b, c)); }
-
-int min(int a, int b) {
-  int notaMinima = a;
-  if (b < notaMinima) {
-    return b;
-  } else {
-    return notaMinima;
-  }
-}
-
-int minima_Nota(int a, int b, int c) { return min(min(a, b), min(b, c)); }
+int maxima_Nota(int a, int b, int c);
+int minima_Nota(int a, int b, int c);
 
 int main() {
   srand(time(NULL));
@@ -64,6 +48,14 @@ int main() {
       minimaNota = minima_Nota(matrizA[0][0], matrizA[0][1], matrizA[0][2]);
     }
   }
+
+  // Calculo de las Columna -> Materias
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 1; j++) {
+      printf("\n Columna %d\n", matrizA[i][j]);
+    }
+  }
+
   printf("---------Estudiantes----------\n");
   printf("\nEstudiante A  -> %d\t%d\t%d", res[0][0], res[0][1], res[0][2]);
   printf("\n Promedio -> %.2f", (float)suma / 3);
@@ -72,3 +64,25 @@ int main() {
 
   printf("\n---------Materias---------\n");
 }
+
+int max(int a, int b) {
+  int notaMaxima = a;
+  if (b > notaMaxima) {
+    return b;
+  } else {
+    return notaMaxima;
+  }
+}
+
+int maxima_Nota(int a, int b, int c) { return max(max(a, b), max(b, c)); }
+
+int min(int a, int b) {
+  int notaMinima = a;
+  if (b < notaMinima) {
+    return b;
+  } else {
+    return notaMinima;
+  }
+}
+
+int minima_Nota(int a, int b, int c) { return min(min(a, b), min(b, c)); }
