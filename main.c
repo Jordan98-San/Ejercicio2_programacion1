@@ -12,7 +12,7 @@ int main() {
   srand(time(NULL));
 
   int i, j;
-  int suma = 0;
+
   int maximaNota = 0;
   int minimaNota = 0;
 
@@ -31,31 +31,27 @@ int main() {
     }
   }
 
-  int nota;
+  for (i = 0; i < 5; i++) {
+    printf("\n");
+    for (j = 0; j < 3; j++) {
+      printf("%d\t", matrizA[i][j]);
+    }
+  }
 
   for (i = 0; i < 5; i++) {
     printf("\n");
-
-    maximaNota = maxima_Nota(matrizA[0][0], matrizA[0][1], matrizA[0][2]);
-    minimaNota = minima_Nota(matrizA[0][0], matrizA[0][1], matrizA[0][2]);
+    int suma = 0;
+    maximaNota = maxima_Nota(matrizA[i][0], matrizA[i][1], matrizA[i][2]);
+    minimaNota = minima_Nota(matrizA[i][0], matrizA[i][1], matrizA[i][2]);
 
     for (j = 0; j < 3; j++) {
-      nota = matrizA[i][j];
       suma += matrizA[i][j];
-
-      if (nota > maximaNota) {
-        maximaNota = nota;
-      }
-      if (nota < minimaNota) {
-        minimaNota = nota;
-      }
     }
-    int Promedio = suma / 3;
+    float Promedio = (float)suma / 3;
     printf("      ---------Estudiantes [%d]----------\n", i);
     printf("      |Materia-1 | Materia-2 | Materia-3\n");
-    printf("Notas |  %d\t |   %d\t     |   %d\t", matrizA[i][0], matrizA[i][1],
-           matrizA[i][2]);
-
+    printf("Notas |    %d    |    %d    |    %d\n", matrizA[i][0],
+           matrizA[i][1], matrizA[i][2]);
     printf("\n[*] Promedio -> %.2f", (float)Promedio);
     printf("\n[+] Nota mas alta -> %d", maximaNota);
     printf("\n[-] Nota mas baja -> %d\n", minimaNota);
