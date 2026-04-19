@@ -10,9 +10,8 @@ int minima_Nota(int a, int b, int c);
 
 int main() {
   srand(time(NULL));
-
+  // Variables
   int i, j;
-
   int maximaNota = 0;
   int minimaNota = 0;
 
@@ -48,7 +47,7 @@ int main() {
       suma += matrizA[i][j];
     }
     float Promedio = (float)suma / 3;
-    printf("      ---------Estudiantes [%d]----------\n", i);
+    printf("      ---------Estudiantes [%d]----------\n", i + 1);
     printf("      |Materia-1 | Materia-2 | Materia-3\n");
     printf("Notas |    %d    |    %d    |    %d\n", matrizA[i][0],
            matrizA[i][1], matrizA[i][2]);
@@ -58,13 +57,35 @@ int main() {
   }
 
   // Calculo de las Columna -> Materias
-  /* for (int i = 0; i < 5; i++) {
-     for (int j = 0; j < 1; j++) {
-       printf("\n Columna %d\n", matrizA[i][j]);
-     }
-   }*/
+  float promedioAsignatura = 0;
+  int nota;
+  for (int j = 0; j < 3; j++) {
+    int suma = 0;
+    int maxNotaMateria = matrizA[0][j];
+    int minNotaMateria = matrizA[0][j];
+    int Conaprobados = 0;
+    int Conreprobados = 0;
 
-  // printf("\n---------Materias---------\n");
+    for (int i = 0; i < 5; i++) {
+      nota = matrizA[i][j];
+      suma += matrizA[i][j];
+
+      maxNotaMateria = max(maxNotaMateria, matrizA[i][j]);
+      minNotaMateria = min(minNotaMateria, matrizA[i][j]);
+      promedioAsignatura = (float)suma / 5;
+      if (nota >= 6) {
+        Conaprobados++;
+      } else {
+        Conreprobados++;
+      }
+    }
+    printf("\n---------Asignatura [%d]---------\n", j + 1);
+    printf("\n[*] Promedio -> %.2f\n", promedioAsignatura);
+    printf("\n[+] Maxima nota -> %d", maxNotaMateria);
+    printf("\n[-] Minima nota -> %d\n", minNotaMateria);
+    printf("\n[+] Aprobados -> %d", Conaprobados);
+    printf("\n[-] Reprobados -> %d", Conreprobados);
+  }
 }
 
 int max(int a, int b) {
@@ -76,7 +97,7 @@ int max(int a, int b) {
   }
 }
 
-int maxima_Nota(int a, int b, int c) { return max(max(a, b), max(b, c)); }
+int maxima_Nota(int a, int b, int c) { return max(max(a, b), c); }
 
 int min(int a, int b) {
   int notaMinima = a;
@@ -87,4 +108,4 @@ int min(int a, int b) {
   }
 }
 
-int minima_Nota(int a, int b, int c) { return min(min(a, b), min(b, c)); }
+int minima_Nota(int a, int b, int c) { return min(min(a, b), c); }
