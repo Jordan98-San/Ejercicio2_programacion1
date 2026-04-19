@@ -51,7 +51,7 @@ int main() {
     printf("      |Materia-1 | Materia-2 | Materia-3\n");
     printf("Notas |    %d    |    %d    |    %d\n", matrizA[i][0],
            matrizA[i][1], matrizA[i][2]);
-    printf("\n[*] Promedio -> %.2f", (float)Promedio);
+    printf("\n[*] Promedio -> %.2f", Promedio);
     printf("\n[+] Nota mas alta -> %d", maximaNota);
     printf("\n[-] Nota mas baja -> %d\n", minimaNota);
   }
@@ -72,13 +72,14 @@ int main() {
 
       maxNotaMateria = max(maxNotaMateria, matrizA[i][j]);
       minNotaMateria = min(minNotaMateria, matrizA[i][j]);
-      promedioAsignatura = (float)suma / 5;
+
       if (nota >= 6) {
         Conaprobados++;
       } else {
         Conreprobados++;
       }
     }
+    promedioAsignatura = (float)suma / 5;
     printf("\n---------Asignatura [%d]---------\n", j + 1);
     printf("\n[*] Promedio -> %.2f\n", promedioAsignatura);
     printf("\n[+] Maxima nota -> %d", maxNotaMateria);

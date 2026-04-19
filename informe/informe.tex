@@ -1,0 +1,193 @@
+
+\documentclass[12pt]{article}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{booktabs}
+
+\geometry{a4paper, margin=2.5cm}
+
+\title{Informe de Programación \ Gestión de Estudiantes y Notas}
+\author{Nombre del Estudiante}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Formulación del Problema}
+
+\subsection{Descripción del Problema}
+Una escuela desea implementar un programa en C que le permita
+gestionar las calificaciones de un grupo de estudiantes en varias asignaturas. Además de gestionar
+las calificaciones, el programa debe calcular y mostrar información relevante como el promedio
+de calificaciones por estudiante y por asignatura, la calificación más alta y baja, y cuántos
+estudiantes aprobaron cada asignatura.
+
+\subsection{Abstracción del Problema}
+
+\subsubsection{Organización de los Datos}
+Los datos se organizan mediante una matriz de dimensiones $5 \times 3$, donde:
+\begin{itemize}
+\item Filas: representan estudiantes.
+\item Columnas: representan materias.
+\end{itemize}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{c|c|c|c}
+\textbf{} & \textbf{Materia 1} & \textbf{Materia 2} & \textbf{Materia 3} \\ \hline
+\textbf{Estudiante 1} & ? & ? & ? \\
+\textbf{Estudiante 2} & ? & ? & ? \\
+\textbf{Estudiante 3} & ? & ? & ? \\
+\textbf{Estudiante 4} & ? & ? & ? \\
+\textbf{Estudiante 5} & ? & ? & ? \\
+\end{tabular}
+\caption{Representación de las notas de los estudiantes}
+\end{table}
+
+\subsubsection{Cálculos Realizados}
+
+Para el desarrollo del programa se implementaron diversos cálculos estadísticos aplicados a una matriz de dimensiones $5 \times 3$, donde cada fila representa un estudiante y cada columna una asignatura.
+
+A continuación, se describen las fórmulas utilizadas:
+
+\paragraph{Promedio por Estudiante}
+
+El promedio de cada estudiante se calcula como la suma de sus calificaciones dividida para el número total de asignaturas:
+
+[
+P_i = \frac{n_{i1} + n_{i2} + n_{i3}}{3}
+]
+
+donde $P_i$ representa el promedio del estudiante $i$, y $n_{ij}$ corresponde a la nota del estudiante $i$ en la asignatura $j$.
+
+\paragraph{Promedio por Asignatura}
+
+El promedio de cada asignatura se obtiene sumando las calificaciones de todos los estudiantes en dicha materia y dividiéndolas para el número total de estudiantes:
+
+[
+P_j = \frac{n_{1j} + n_{2j} + n_{3j} + n_{4j} + n_{5j}}{5}
+]
+
+donde $P_j$ representa el promedio de la asignatura $j$.
+
+\paragraph{Conteo de Aprobados y Reprobados}
+
+Se establece como criterio de aprobación una nota mayor o igual a 6. Para el conteo de estudiantes aprobados por asignatura se utiliza la siguiente expresión:
+
+[
+A_j = \sum_{i=1}^{5}
+\begin{cases}
+1 & \text{si } n_{ij} \geq 6 \
+0 & \text{si } n_{ij} < 6
+\end{cases}
+]
+
+De forma complementaria, el número de estudiantes reprobados se calcula como:
+
+[
+R_j = \sum_{i=1}^{5}
+\begin{cases}
+1 & \text{si } n_{ij} < 6 \
+0 & \text{si } n_{ij} \geq 6
+\end{cases}
+]
+
+\subsubsection{Ejemplo Práctico}
+
+Supongamos las notas de la \textbf{Materia 1} (\(j=1\)):
+
+\[
+\begin{array}{c|c|c|c}
+\text{Estudiante} & \text{Nota} & \text{¿} \geq 6\text{?} & \text{Aporta} \\
+\hline
+i=1 & 7 & \text{Sí} & +1 \\
+i=2 & 5 & \text{No} & +0 \\
+i=3 & 8 & \text{Sí} & +1 \\
+i=4 & 4 & \text{No} & +0 \\
+i=5 & 9 & \text{Sí} & +1 \\
+\end{array}
+\]
+
+\[
+A_1 = 1 + 0 + 1 + 0 + 1 = 3 \text{ estudiantes aprobados}
+\]
+
+
+\paragraph{Implementación}
+
+Las fórmulas descritas fueron implementadas en el programa mediante estructuras iterativas (\texttt{for}) para recorrer la matriz, y funciones auxiliares para determinar valores máximos y mínimos, garantizando así una solución modular y eficiente.
+
+\subsubsection{Validación de Entradas}
+Las notas deben estar dentro del rango permitido (0 a 10). En este caso, los valores son generados aleatoriamente, asegurando que cumplen con el rango establecido.
+
+\subsubsection{Visualización de Resultados}
+Los resultados se presentan en consola de forma estructurada, mostrando:
+\begin{itemize}
+\item Notas por estudiante.
+\item Promedio individual.
+\item Nota máxima y mínima.
+\item Estadísticas por asignatura.
+\end{itemize}
+
+\section{Implementación del Código}
+
+\subsection{Repositorio}
+El código fuente se encuentra disponible en el siguiente enlace:
+\begin{center}
+\url{https://github.com/tu-usuario/tu-repositorio}
+\end{center}
+
+\subsection{Historial de Commits}
+Se realizó un seguimiento del desarrollo mediante commits en GitHub, donde cada cambio fue documentado con una descripción clara de su propósito.
+
+\begin{itemize}
+\item Commit 1: Estructura inicial del programa.
+\item Commit 2: Implementación de la matriz y carga de datos.
+\item Commit 3: Cálculo de promedios por estudiante.
+\item Commit 4: Cálculo de estadísticas por asignatura.
+\item Commit 5: Mejora de la salida en consola.
+\end{itemize}
+
+\section{Validación y Pruebas}
+
+Se realizaron múltiples ejecuciones del programa para verificar su correcto funcionamiento.
+
+\subsection{Evidencia de Ejecución}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{ejecucion.png}
+\caption{Ejemplo de ejecución del programa}
+\end{figure}
+
+\section{Conclusiones}
+
+\subsection{Aprendizajes}
+Durante el desarrollo de este programa se reforzaron los siguientes conceptos:
+\begin{itemize}
+\item Uso de matrices en lenguaje C.
+\item Estructuras de control (bucles y condicionales).
+\item Modularización mediante funciones.
+\item Cálculo de estadísticas básicas.
+\end{itemize}
+
+\subsection{Retos Enfrentados}
+Antes de comenzar a programar, los principales retos fueron:
+\begin{itemize}
+\item Comprender cómo estructurar los datos correctamente.
+\item Definir los cálculos necesarios.
+\item Evitar errores en los recorridos de la matriz.
+\end{itemize}
+
+\end{document}
