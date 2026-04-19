@@ -17,52 +17,58 @@ int main() {
   int minimaNota = 0;
 
   int matrizA[5][3] = {0};
-  // int res[5][3] = {0};
 
+  /* Entrada de datos */
   for (i = 0; i < 5; i++) {
     for (j = 0; j < 3; j++) {
       matrizA[i][j] = rand() % 10 + 1;
+      if (matrizA[i][j] < 0 || matrizA[i][j] > 10) {
+        printf("[!] Valores dentro de la matriz superan el rango permitido "
+               "(0-10)");
+
+        matrizA[i][j] = rand() % 10 + 1;
+      }
     }
   }
 
-  for (i = 0; i < 5; i++) {
-    printf("Estudiante -> %d\t\n", i);
-  }
+  int nota;
 
   for (i = 0; i < 5; i++) {
     printf("\n");
-    for (j = 0; j < 3; j++) {
-      printf("%d\t", matrizA[i][j]);
-    }
-  }
-  int res[5][3] = {0};
 
-  for (i = 0; i < 1; i++) {
-    printf("\n");
+    maximaNota = maxima_Nota(matrizA[0][0], matrizA[0][1], matrizA[0][2]);
+    minimaNota = minima_Nota(matrizA[0][0], matrizA[0][1], matrizA[0][2]);
+
     for (j = 0; j < 3; j++) {
-      // printf("Estudiante A  -> %d\t", matrizA[i][j]);
-      res[i][j] = matrizA[i][j];
+      nota = matrizA[i][j];
       suma += matrizA[i][j];
 
-      maximaNota = maxima_Nota(matrizA[0][0], matrizA[0][1], matrizA[0][2]);
-      minimaNota = minima_Nota(matrizA[0][0], matrizA[0][1], matrizA[0][2]);
+      if (nota > maximaNota) {
+        maximaNota = nota;
+      }
+      if (nota < minimaNota) {
+        minimaNota = nota;
+      }
     }
+    int Promedio = suma / 3;
+    printf("      ---------Estudiantes [%d]----------\n", i);
+    printf("      |Materia-1 | Materia-2 | Materia-3\n");
+    printf("Notas |  %d\t |   %d\t     |   %d\t", matrizA[i][0], matrizA[i][1],
+           matrizA[i][2]);
+
+    printf("\n[*] Promedio -> %.2f", (float)Promedio);
+    printf("\n[+] Nota mas alta -> %d", maximaNota);
+    printf("\n[-] Nota mas baja -> %d\n", minimaNota);
   }
 
   // Calculo de las Columna -> Materias
-  for (int i = 0; i < 5; i++) {
-    for (int j = 0; j < 1; j++) {
-      printf("\n Columna %d\n", matrizA[i][j]);
-    }
-  }
+  /* for (int i = 0; i < 5; i++) {
+     for (int j = 0; j < 1; j++) {
+       printf("\n Columna %d\n", matrizA[i][j]);
+     }
+   }*/
 
-  printf("---------Estudiantes----------\n");
-  printf("\nEstudiante A  -> %d\t%d\t%d", res[0][0], res[0][1], res[0][2]);
-  printf("\n Promedio -> %.2f", (float)suma / 3);
-  printf("\nNota mas alta -> %d\n", maximaNota);
-  printf("\nNota mas baja -> %d", minimaNota);
-
-  printf("\n---------Materias---------\n");
+  // printf("\n---------Materias---------\n");
 }
 
 int max(int a, int b) {
